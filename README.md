@@ -1,8 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) using Node 14.17.6.
-
 # How to run this app
 
-Run **npm i** and then **npm start** in the root directory of the project
+Run **npm install** and then **npm start** in the root directory of the project.
 
 ## Available Scripts
 
@@ -21,3 +19,11 @@ Launches the test runner in the interactive watch mode.
 
 Builds the app for production to the `build` folder.
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+## Additional information
+
+Husky pre-commit prettier hook is used to enforce consistent coding style across the project.
+
+Husky pre-push hook is used to run unit tests.
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) using Node 14.17.6.
