@@ -47,7 +47,8 @@
   "devDependencies": {
     "husky": "^7.0.4",
     "lint-staged": "^12.3.5",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "sass": "^1.49.9"
   },
   "lint-staged": {
     "*.{ts,tsx,css,md}": "npm run prettier:format"

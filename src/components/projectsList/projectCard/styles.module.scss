@@ -1,0 +1,52 @@
+.cardLinkWr {
+  margin: 20px;
+  text-decoration: none;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    background: var(--bgColor);
+    color: var(--textColor);
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+
+    .projectName {
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .delete {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 23px;
+      height: 23px;
+      opacity: 0.3;
+    }
+
+    .delete:hover {
+      opacity: 1;
+    }
+
+    .delete:before,
+    .delete:after {
+      position: absolute;
+      left: 15px;
+      content: ' ';
+      height: 23px;
+      width: 2px;
+      background-color: var(--textColor);
+    }
+
+    .delete:before {
+      transform: rotate(45deg);
+    }
+
+    .delete:after {
+      transform: rotate(-45deg);
+    }
+  }
+}
