@@ -5,12 +5,16 @@ interface IProjectsContext {
   projects: Project[];
   addProject: (newProject: Project) => void;
   deleteProject: (id: string) => void;
+  sortByRating: (sortAscending: boolean) => void;
+  sortByDate: (sortAscending: boolean) => void;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>({
   projects: [],
   addProject: () => {},
   deleteProject: () => {},
+  sortByRating: () => {},
+  sortByDate: () => {},
 });
 
 export const ProjectsProvider: FC<ReactNode> = ({ children }) => {
@@ -35,8 +39,28 @@ export const ProjectsProvider: FC<ReactNode> = ({ children }) => {
     );
   };
 
+  const sortByRating = (sortAscending: boolean) => {
+    setProjects([
+      ...projects.sort((a, b) =>
+        sortAscending ? a.rating - b.rating : b.rating - a.rating
+      ),
+    ]);
+  };
+
+  const sortByDate = (sortAscending: boolean) => {
+    setProjects([
+      ...projects.sort((a, b) =>
+        sortAscending
+          ? new Date(a.created_at).valueOf() - new Date(b.created_at).valueOf()
+          : new Date(b.created_at).valueOf() - new Date(a.created_at).valueOf()
+      ),
+    ]);
+  };
+
   return (
-    <ProjectsContext.Provider value={{ projects, addProject, deleteProject }}>
+    <ProjectsContext.Provider
+      value={{ projects, addProject, deleteProject, sortByRating, sortByDate }}
+    >
       {children}
     </ProjectsContext.Provider>
   );

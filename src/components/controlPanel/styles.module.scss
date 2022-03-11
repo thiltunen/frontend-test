@@ -1,3 +1,42 @@
 .controlPanel {
   width: 100%;
+  display: flex;
+  margin-left: 20px;
+
+  .select {
+    &:before {
+      bordercolor: #1976d2;
+    }
+
+    &:after {
+      bordercolor: #1976d2;
+    }
+
+    icon {
+      fill: #1976d2;
+    }
+  }
+
+  .addBtn {
+    width: 200px;
+    margin-right: 40px;
+  }
+
+  .sorting {
+    width: 200px;
+    margin-right: 10px;
+  }
+
+  .sortIcon {
+    align-self: center;
+    transition: all 0.2s;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .sortIconAsc {
+    transform: rotate(180deg);
+  }
 }

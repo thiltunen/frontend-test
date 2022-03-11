@@ -3,7 +3,7 @@ export type Project = {
   name: string;
   url: string;
   rating: number;
-  created_at: string;
+  created_at: string; //TODO update type
 };
 
 export const projectsMock: Project[] = [
@@ -28,7 +28,7 @@ export const projectsMock: Project[] = [
     name: "AngularJs",
     url: "https://github.com/angular/angular.js?",
     rating: 2,
-    created_at: "2021-11-19T13:47:17.933Z",
+    created_at: "2021-11-21T13:47:17.933Z",
   },
 
   {
@@ -36,7 +36,7 @@ export const projectsMock: Project[] = [
     name: "Django",
     url: "https://github.com/django/django",
     rating: 5,
-    created_at: "2021-11-19T13:47:08.026Z",
+    created_at: "2021-11-22T13:47:08.026Z",
   },
 
   {
@@ -52,7 +52,7 @@ export const projectsMock: Project[] = [
     name: "Docker",
     url: "https://github.com/docker",
     rating: 4,
-    created_at: "2021-11-19T13:47:01.492Z",
+    created_at: "2021-11-23T13:47:01.492Z",
   },
 
   {
@@ -60,6 +60,6 @@ export const projectsMock: Project[] = [
     name: "Selenium",
     url: "https://github.com/SeleniumHQ/selenium",
     rating: 1,
-    created_at: "2021-11-19T13:46:49.460Z",
+    created_at: "2021-11-01T13:46:49.460Z",
   },
 ];

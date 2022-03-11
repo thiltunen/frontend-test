@@ -11,6 +11,8 @@ interface Props {
 const ProjectCard: FC<Props> = ({ project }) => {
   const { id, name, url, rating, created_at } = project;
   const { deleteProject } = useContext(ProjectsContext);
+
+  // New colors are generated on reRender
   const bgColor = getRandomBgColor();
   const textColor = getContrastTextColor(bgColor);
 
@@ -37,7 +39,10 @@ const ProjectCard: FC<Props> = ({ project }) => {
           className={styles.delete}
           onClick={(event) => handleDelete(event, id)}
         />
-        <span className={styles.rating}>{"⭐".repeat(rating || 0)}</span>
+        <div className={styles.cardBottom}>
+          <span className={styles.rating}>{"⭐".repeat(rating || 0)}</span>
+          <span>Date: {created_at.substring(0, 10)}</span>
+        </div>
       </div>
     </a>
   );
