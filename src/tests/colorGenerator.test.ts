@@ -1,14 +1,19 @@
-import {
-  getRandomBgColor,
-  getContrastTextColor,
-} from "components/utils/colorGenerator";
+import { getRandomBgColor, getContrastTextColor } from "utils/colorGenerator";
 
 describe("Color generator", () => {
   test("it should return correct hex color for background", () => {
-    const bgColor = getRandomBgColor();
+    const randomColors = [];
+    let i = 0;
+    while (i < 100) {
+      randomColors.push(getRandomBgColor());
+      i++;
+    }
 
-    expect(typeof bgColor).toBe("string");
-    expect(bgColor.length).toEqual(7);
+    expect(
+      randomColors.every(
+        (color) => typeof color === "string" && color.length === 7
+      )
+    ).toBe(true);
   });
 
   test("it should return correct text hex color for dark backgound", () => {

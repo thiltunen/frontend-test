@@ -1,9 +1,7 @@
-import { CSSProperties, FC, SyntheticEvent } from "react";
+import { useContext, CSSProperties, FC, SyntheticEvent } from "react";
+import { getRandomBgColor, getContrastTextColor } from "utils/colorGenerator";
+import { ProjectsContext } from "contexts/ProjectsContext";
 import { Project } from "mockData/projects";
-import {
-  getRandomBgColor,
-  getContrastTextColor,
-} from "components/utils/colorGenerator";
 import styles from "./styles.module.scss";
 
 interface Props {
@@ -11,15 +9,14 @@ interface Props {
 }
 
 const ProjectCard: FC<Props> = ({ project }) => {
-  const { name, url, rating, created_at } = project;
-
+  const { id, name, url, rating, created_at } = project;
+  const { deleteProject } = useContext(ProjectsContext);
   const bgColor = getRandomBgColor();
   const textColor = getContrastTextColor(bgColor);
 
-  const handleDelete = (event: SyntheticEvent) => {
+  const handleDelete = (event: SyntheticEvent, id: string) => {
     event.preventDefault();
-
-    console.log("deleted");
+    deleteProject(id);
   };
 
   return (
@@ -36,7 +33,10 @@ const ProjectCard: FC<Props> = ({ project }) => {
         }
       >
         <h2 className={styles.projectName}>{name}</h2>
-        <span className={styles.delete} onClick={handleDelete} />
+        <span
+          className={styles.delete}
+          onClick={(event) => handleDelete(event, id)}
+        />
         <span className={styles.rating}>{"⭐".repeat(rating || 0)}</span>
       </div>
     </a>

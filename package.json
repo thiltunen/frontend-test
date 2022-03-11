@@ -23,8 +23,8 @@
     "test": "react-scripts test",
     "test:nowatch": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
-    "prettier:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
-    "prettier:format": "prettier --write \"src/**/*.{ts,tsx,css}\""
+    "prettier:check": "prettier --check \"src/**/*.{ts,tsx,scss,md}\"",
+    "prettier:format": "prettier --write \"src/**/*.{ts,tsx,scss,md}\""
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +51,6 @@
     "sass": "^1.49.9"
   },
   "lint-staged": {
-    "*.{ts,tsx,css,md}": "npm run prettier:format"
+    "*.{ts,tsx,scss,md}": "npm run prettier:format"
   }
 }
