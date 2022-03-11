@@ -1,25 +1,17 @@
 .controlPanel {
-  width: 100%;
   display: flex;
-  margin-left: 20px;
-
-  .select {
-    &:before {
-      bordercolor: #1976d2;
-    }
-
-    &:after {
-      bordercolor: #1976d2;
-    }
-
-    icon {
-      fill: #1976d2;
-    }
-  }
+  margin: 0 20px;
 
   .addBtn {
+    display: flex;
+    align-items: center;
     width: 200px;
     margin-right: 40px;
+
+    .btnText {
+      margin-top: 4px;
+      font-size: 14px;
+    }
   }
 
   .sorting {

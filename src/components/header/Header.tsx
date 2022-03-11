@@ -1,5 +1,5 @@
-import { FC } from "react";
-import styles from "./styles.module.scss";
+import { FC } from 'react';
+import styles from './styles.module.scss';
 
 const Header: FC = () => {
   return (

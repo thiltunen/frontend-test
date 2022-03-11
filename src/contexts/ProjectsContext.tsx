@@ -1,5 +1,5 @@
-import { useState, createContext, useEffect, ReactNode, FC } from "react";
-import { projectsMock, Project } from "mockData/projects";
+import { useState, createContext, useEffect, ReactNode, FC } from 'react';
+import { projectsMock, Project } from 'mockData/projects';
 
 interface IProjectsContext {
   projects: Project[];
@@ -21,12 +21,14 @@ export const ProjectsProvider: FC<ReactNode> = ({ children }) => {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    const projectsData = JSON.parse(localStorage.getItem("projects")!); // Possible to return mockData if localStorage got cleared
+    const projectsData = JSON.parse(localStorage.getItem('projects')!);
+
+    // Possible to return mockData if localStorage got cleared
     setProjects(projectsData || projectsMock);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("projects", JSON.stringify(projects));
+    localStorage.setItem('projects', JSON.stringify(projects));
   }, [projects]);
 
   const addProject = (newProject: Project) => {

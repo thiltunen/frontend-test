@@ -9,7 +9,7 @@ const rgbToYIQ = ({ r, g, b }: RGB): number => {
 };
 
 const hexToRgb = (hex: string): RGB | undefined => {
-  if (!hex || hex === undefined || hex === "") {
+  if (!hex || hex === undefined || hex === '') {
     return undefined;
   }
 
@@ -27,8 +27,8 @@ const hexToRgb = (hex: string): RGB | undefined => {
 
 export const getRandomBgColor = () => {
   return (
-    "#" +
-    ("00000" + Math.floor(Math.random() * Math.pow(16, 6)).toString(16)).slice(
+    '#' +
+    ('00000' + Math.floor(Math.random() * Math.pow(16, 6)).toString(16)).slice(
       -6
     )
   );
@@ -38,11 +38,11 @@ export const getContrastTextColor = (
   colorHex: string | undefined,
   threshold: number = 128
 ): string => {
-  if (colorHex === undefined) return "#000";
+  if (colorHex === undefined) return '#000';
 
   const rgb: RGB | undefined = hexToRgb(colorHex);
 
-  if (rgb === undefined) return "#000";
+  if (rgb === undefined) return '#000';
 
-  return rgbToYIQ(rgb) >= threshold ? "#000" : "#fff";
+  return rgbToYIQ(rgb) >= threshold ? '#000' : '#fff';
 };

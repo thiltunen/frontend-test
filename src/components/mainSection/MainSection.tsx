@@ -1,7 +1,7 @@
-import { FC } from "react";
-import ProjectsList from "components/projectsList/ProjectsList";
-import ControlPanel from "components/controlPanel/ControlPanel";
-import styles from "./styles.module.scss";
+import { FC } from 'react';
+import ProjectsList from 'components/projectsList/ProjectsList';
+import ControlPanel from 'components/controlPanel/ControlPanel';
+import styles from './styles.module.scss';
 
 const MainSection: FC = () => {
   return (
