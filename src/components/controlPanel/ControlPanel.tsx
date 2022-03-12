@@ -30,70 +30,74 @@ const ControlPanel: FC = () => {
         <span className={styles.btnText}>Add new project</span>
       </Button>
 
-      <FormControl className={styles.sorting}>
-        <InputLabel
-          id="sort-by-helper-label"
-          sx={{
-            color: '#1976d2',
-            fontWeight: 500,
-            fontSize: '14px',
-            textTransform: 'upperCase',
-          }}
-        >
-          Sort By
-        </InputLabel>
-        <Select
-          labelId="sort-by-helper-label"
-          value={sortBy}
-          label="Sort By"
-          onChange={(event) => setSortBy(event.target.value)}
-          sx={{
-            '&:hover': {
-              bgcolor: 'rgba(25, 118, 210, 0.04)',
-              '&& fieldset': {
+      <div className={styles.sortWr}>
+        <FormControl className={styles.sorting}>
+          <InputLabel
+            id="sort-by-helper-label"
+            sx={{
+              color: '#1976d2',
+              fontWeight: 500,
+              fontSize: '14px',
+              textTransform: 'upperCase',
+            }}
+          >
+            Sort By
+          </InputLabel>
+          <Select
+            labelId="sort-by-helper-label"
+            value={sortBy}
+            label="Sort By"
+            onChange={(event) => setSortBy(event.target.value)}
+            sx={{
+              '&:hover': {
+                bgcolor: 'rgba(25, 118, 210, 0.04)',
+                '&& fieldset': {
+                  borderColor: 'rgba(25, 118, 210, 0.5)',
+                },
+              },
+              color: '#1976d2',
+              fontWeight: 500,
+              fontSize: '14px',
+              textTransform: 'upperCase',
+              '& .MuiOutlinedInput-notchedOutline': {
                 borderColor: 'rgba(25, 118, 210, 0.5)',
               },
-            },
-            color: '#1976d2',
-            fontWeight: 500,
-            fontSize: '14px',
-            textTransform: 'upperCase',
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'rgba(25, 118, 210, 0.5)',
-            },
-            '& .MuiSelect-icon': {
-              fill: '#1976d2',
-            },
-          }}
-        >
-          <MenuItem
-            color="primary"
-            value={'rating'}
-            sx={{
-              color: '#1976d2',
-              textTransform: 'upperCase',
+              '& .MuiSelect-icon': {
+                fill: '#1976d2',
+              },
             }}
           >
-            Rating
-          </MenuItem>
-          <MenuItem
-            color="primary"
-            value={'date'}
-            sx={{
-              color: '#1976d2',
-              textTransform: 'upperCase',
-            }}
-          >
-            Date
-          </MenuItem>
-        </Select>
-      </FormControl>
+            <MenuItem
+              color="primary"
+              value={'rating'}
+              sx={{
+                color: '#1976d2',
+                textTransform: 'upperCase',
+              }}
+            >
+              Rating
+            </MenuItem>
+            <MenuItem
+              color="primary"
+              value={'date'}
+              sx={{
+                color: '#1976d2',
+                textTransform: 'upperCase',
+              }}
+            >
+              Date
+            </MenuItem>
+          </Select>
+        </FormControl>
 
-      <ArrowDownwardIcon
-        color="primary"
-        className={cn(styles.sortIcon, { [styles.sortIconAsc]: sortAscending })}
-        onClick={() => setSortAscending(!sortAscending)}
-      />
+        <ArrowDownwardIcon
+          color="primary"
+          className={cn(styles.sortIcon, {
+            [styles.sortIconAsc]: sortAscending,
+          })}
+          onClick={() => setSortAscending(!sortAscending)}
+        />
+      </div>
     </div>
   );
 };

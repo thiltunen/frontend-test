@@ -15,6 +15,14 @@
     border-radius: 6px;
     transition: all 0.3s;
 
+    @media only screen and (max-width: 840px) {
+      padding: 10px;
+    }
+
+    @media only screen and (max-width: 375px) {
+      max-width: 280px;
+    }
+
     &:hover {
       transform: scale(1.03);
     }

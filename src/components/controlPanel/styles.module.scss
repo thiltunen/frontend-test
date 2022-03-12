@@ -2,11 +2,21 @@
   display: flex;
   margin: 0 20px;
 
+  @media only screen and (max-width: 840px) {
+    flex-direction: column;
+  }
+
   .addBtn {
     display: flex;
     align-items: center;
     width: 200px;
     margin-right: 40px;
+    height: 53px;
+
+    @media only screen and (max-width: 840px) {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
 
     .btnText {
       margin-top: 4px;
@@ -14,21 +24,29 @@
     }
   }
 
-  .sorting {
-    width: 200px;
-    margin-right: 10px;
-  }
+  .sortWr {
+    display: flex;
 
-  .sortIcon {
-    align-self: center;
-    transition: all 0.2s;
-
-    &:hover {
-      cursor: pointer;
+    @media only screen and (max-width: 840px) {
+      margin-bottom: 10px;
     }
-  }
 
-  .sortIconAsc {
-    transform: rotate(180deg);
+    .sorting {
+      width: 200px;
+      margin-right: 10px;
+    }
+
+    .sortIcon {
+      align-self: center;
+      transition: all 0.2s;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .sortIconAsc {
+      transform: rotate(180deg);
+    }
   }
 }
