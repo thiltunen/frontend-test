@@ -7,6 +7,8 @@ interface IProjectsContext {
   deleteProject: (id: string) => void;
   sortByRating: (sortAscending: boolean) => void;
   sortByDate: (sortAscending: boolean) => void;
+  updateColors: boolean;
+  updateColorsOnRender: () => void;
 }
 
 export const ProjectsContext = createContext<IProjectsContext>({
@@ -15,10 +17,13 @@ export const ProjectsContext = createContext<IProjectsContext>({
   deleteProject: () => {},
   sortByRating: () => {},
   sortByDate: () => {},
+  updateColors: false,
+  updateColorsOnRender: () => {},
 });
 
 export const ProjectsProvider: FC<ReactNode> = ({ children }) => {
   const [projects, setProjects] = useState<Project[]>([]);
+  const [updateColors, setUpdateColors] = useState(false);
 
   useEffect(() => {
     const projectsList =
@@ -26,6 +31,8 @@ export const ProjectsProvider: FC<ReactNode> = ({ children }) => {
 
     setProjects(projectsList);
   }, []);
+
+  const updateColorsOnRender = () => setUpdateColors(!updateColors);
 
   const addProject = (newProject: Project) => {
     const projectsList = [...projects, newProject];
@@ -61,7 +68,15 @@ export const ProjectsProvider: FC<ReactNode> = ({ children }) => {
 
   return (
     <ProjectsContext.Provider
-      value={{ projects, addProject, deleteProject, sortByRating, sortByDate }}
+      value={{
+        projects,
+        addProject,
+        deleteProject,
+        sortByRating,
+        sortByDate,
+        updateColors,
+        updateColorsOnRender,
+      }}
     >
       {children}
     </ProjectsContext.Provider>

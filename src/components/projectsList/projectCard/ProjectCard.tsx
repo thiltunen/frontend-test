@@ -1,4 +1,4 @@
-import { useContext, CSSProperties, FC, SyntheticEvent } from 'react';
+import { useContext, CSSProperties, FC, SyntheticEvent, useMemo } from 'react';
 import { getRandomBgColor, getContrastTextColor } from 'utils/colorGenerator';
 import { ProjectsContext } from 'contexts/ProjectsContext';
 import { Project } from 'mockData/projects';
@@ -10,11 +10,14 @@ interface Props {
 
 const ProjectCard: FC<Props> = ({ project }) => {
   const { id, name, url, rating, created_at } = project;
-  const { deleteProject } = useContext(ProjectsContext);
+  const { deleteProject, updateColors } = useContext(ProjectsContext);
 
-  // New colors are generated on reRender
-  const bgColor = getRandomBgColor();
-  const textColor = getContrastTextColor(bgColor);
+  // New colors are generated on each rerender / page update based on switcher
+  const bgColor = useMemo(() => getRandomBgColor(), []);
+  const textColor = useMemo(() => getContrastTextColor(bgColor), [bgColor]);
+
+  const randomBgColor = getRandomBgColor();
+  const randomTextColor = getContrastTextColor(randomBgColor);
 
   const handleDelete = (event: SyntheticEvent, id: string) => {
     event.preventDefault();
@@ -31,7 +34,10 @@ const ProjectCard: FC<Props> = ({ project }) => {
       <div
         className={styles.card}
         style={
-          { '--bgColor': bgColor, '--textColor': textColor } as CSSProperties
+          {
+            '--bgColor': updateColors ? randomBgColor : bgColor,
+            '--textColor': updateColors ? randomTextColor : textColor,
+          } as CSSProperties
         }
       >
         <h2 className={styles.projectName}>{name}</h2>

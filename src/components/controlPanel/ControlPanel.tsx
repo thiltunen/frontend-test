@@ -8,6 +8,8 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+import Switch from '@mui/material/Switch';
+import FormControlLabel from '@mui/material/FormControlLabel';
 // Local
 import { ProjectsContext } from 'contexts/ProjectsContext';
 import { ModalContext } from 'contexts/ModalContext';
@@ -15,7 +17,8 @@ import NewProjectModal from './newProjectModal/NewProjectModal';
 import styles from './styles.module.scss';
 
 const ControlPanel: FC = () => {
-  const { sortByRating, sortByDate } = useContext(ProjectsContext);
+  const { sortByRating, sortByDate, updateColorsOnRender } =
+    useContext(ProjectsContext);
   const { handleOpenModal } = useContext(ModalContext);
   const [sortBy, setSortBy] = useState('');
   const [sortAscending, setSortAscending] = useState(false);
@@ -104,6 +107,12 @@ const ControlPanel: FC = () => {
           onClick={() => setSortAscending(!sortAscending)}
         />
       </div>
+
+      <FormControlLabel
+        sx={{ color: '#1976d2', textTransform: 'upperCase' }}
+        control={<Switch onChange={updateColorsOnRender} />}
+        label="Update colors on each reRender"
+      />
 
       <NewProjectModal />
     </div>
