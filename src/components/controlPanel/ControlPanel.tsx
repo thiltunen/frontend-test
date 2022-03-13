@@ -1,5 +1,6 @@
 import { FC, useEffect, useState, useContext } from 'react';
 import cn from 'classnames';
+// MUI
 import FormControl from '@mui/material/FormControl';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
@@ -7,11 +8,15 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+// Local
 import { ProjectsContext } from 'contexts/ProjectsContext';
+import { ModalContext } from 'contexts/ModalContext';
+import NewProjectModal from './newProjectModal/NewProjectModal';
 import styles from './styles.module.scss';
 
 const ControlPanel: FC = () => {
   const { sortByRating, sortByDate } = useContext(ProjectsContext);
+  const { handleOpenModal } = useContext(ModalContext);
   const [sortBy, setSortBy] = useState('');
   const [sortAscending, setSortAscending] = useState(false);
 
@@ -26,6 +31,7 @@ const ControlPanel: FC = () => {
         variant="outlined"
         startIcon={<AddIcon />}
         className={styles.addBtn}
+        onClick={handleOpenModal}
       >
         <span className={styles.btnText}>Add new project</span>
       </Button>
@@ -98,6 +104,8 @@ const ControlPanel: FC = () => {
           onClick={() => setSortAscending(!sortAscending)}
         />
       </div>
+
+      <NewProjectModal />
     </div>
   );
 };

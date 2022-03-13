@@ -21,24 +21,24 @@ export const ProjectsProvider: FC<ReactNode> = ({ children }) => {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    const projectsData = JSON.parse(localStorage.getItem('projects')!);
+    const projectsList =
+      JSON.parse(localStorage.getItem('projects')!) || projectsMock;
 
-    // Possible to return mockData if localStorage got cleared
-    setProjects(projectsData || projectsMock);
+    setProjects(projectsList);
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem('projects', JSON.stringify(projects));
-  }, [projects]);
-
   const addProject = (newProject: Project) => {
-    setProjects((prevProjects: Project[]) => [...prevProjects, newProject]);
+    const projectsList = [...projects, newProject];
+    setProjects(projectsList);
+
+    localStorage.setItem('projects', JSON.stringify(projectsList));
   };
 
   const deleteProject = (id: string) => {
-    setProjects((prevProjects: Project[]) =>
-      prevProjects.filter((item) => item.id !== id)
-    );
+    const projectsList = projects.filter((project) => project.id !== id);
+    setProjects(projectsList);
+
+    localStorage.setItem('projects', JSON.stringify(projectsList));
   };
 
   const sortByRating = (sortAscending: boolean) => {

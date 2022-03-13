@@ -3,7 +3,7 @@ export type Project = {
   name: string;
   url: string;
   rating: number;
-  created_at: string; //TODO update type
+  created_at: string;
 };
 
 export const projectsMock: Project[] = [
