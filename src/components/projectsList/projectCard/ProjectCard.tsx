@@ -1,4 +1,5 @@
 import { useContext, CSSProperties, FC, SyntheticEvent, useMemo } from 'react';
+import { motion } from 'framer-motion';
 import Button from '@mui/material/Button';
 import DialogActions from '@mui/material/DialogActions';
 import { getRandomBgColor, getContrastTextColor } from 'utils/colorGenerator';
@@ -35,7 +36,8 @@ const ProjectCard: FC<Props> = ({ project }) => {
   };
 
   return (
-    <div
+    <motion.div
+      layout
       onClick={() => handleOpenModal(`${id}Modal`)}
       className={styles.cardWr}
     >
@@ -69,7 +71,7 @@ const ProjectCard: FC<Props> = ({ project }) => {
           </Button>
         </DialogActions>
       </Modal>
-    </div>
+    </motion.div>
   );
 };
 
