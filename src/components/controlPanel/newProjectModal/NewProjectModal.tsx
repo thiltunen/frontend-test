@@ -43,10 +43,15 @@ const NewProjectModal: FC = () => {
   };
 
   const onSubmit: SubmitHandler<IFormValues> = (formValues) => {
+    const currentDate = new Date();
+    const localISOTime = new Date(
+      currentDate.getTime() - currentDate.getTimezoneOffset() * 60000
+    ).toISOString();
+
     addProject({
-      ...formValues,
       id: uuidv4(),
-      created_at: new Date().toISOString(),
+      ...formValues,
+      created_at: localISOTime,
     });
 
     reset();
@@ -54,7 +59,11 @@ const NewProjectModal: FC = () => {
   };
 
   return (
-    <Modal title="Add new project">
+    <Modal
+      id="newProjectModal"
+      title="Add new project"
+      handleOutsideClick={reset}
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
           name="name"

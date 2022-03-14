@@ -34,7 +34,7 @@ const ControlPanel: FC = () => {
         variant="outlined"
         startIcon={<AddIcon />}
         className={styles.addBtn}
-        onClick={handleOpenModal}
+        onClick={() => handleOpenModal('newProjectModal')}
       >
         <span className={styles.btnText}>Add new project</span>
       </Button>
@@ -111,7 +111,8 @@ const ControlPanel: FC = () => {
       <FormControlLabel
         sx={{ color: '#1976d2', textTransform: 'upperCase' }}
         control={<Switch onChange={updateColorsOnRender} />}
-        label="Update colors on each reRender"
+        label="Update colors on&nbsp;each&nbsp;rerender"
+        className={styles.colorsSwithc}
       />
 
       <NewProjectModal />

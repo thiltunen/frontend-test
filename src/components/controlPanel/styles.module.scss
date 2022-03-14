@@ -29,6 +29,7 @@
     margin-right: 40px;
 
     @media only screen and (max-width: 840px) {
+      margin-right: 0;
       margin-bottom: 10px;
     }
 
@@ -48,6 +49,14 @@
 
     .sortIconAsc {
       transform: rotate(180deg);
+    }
+  }
+
+  .colorsSwitcher {
+    & > :last-child {
+      @media only screen and (max-width: 840px) {
+        font-size: 10px;
+      }
     }
   }
 }

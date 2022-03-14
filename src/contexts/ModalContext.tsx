@@ -1,27 +1,33 @@
 import { useState, createContext, ReactNode, FC } from 'react';
 
 interface IModalContext {
-  isOpen: boolean;
-  handleOpenModal: VoidFunction;
-  handleCloseModal: VoidFunction;
+  modalResolver: { modalId: string; isOpen: boolean };
+  handleOpenModal: (modalId: string) => void;
+  handleCloseModal: () => void;
 }
 
 export const ModalContext = createContext<IModalContext>({
-  isOpen: false,
+  modalResolver: { modalId: '', isOpen: false },
   handleOpenModal: () => {},
   handleCloseModal: () => {},
 });
 
 export const ModalProvider: FC<ReactNode> = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [modalResolver, setmModalResolver] = useState({
+    modalId: '',
+    isOpen: false,
+  });
 
-  const handleOpenModal = () => setIsOpen(true);
+  const handleOpenModal = (modalId: string) =>
+    setmModalResolver({ modalId, isOpen: true });
 
-  const handleCloseModal = () => setIsOpen(false);
+  const handleCloseModal = () => {
+    setmModalResolver({ modalId: '', isOpen: false });
+  };
 
   return (
     <ModalContext.Provider
-      value={{ isOpen, handleOpenModal, handleCloseModal }}
+      value={{ modalResolver, handleOpenModal, handleCloseModal }}
     >
       {children}
     </ModalContext.Provider>

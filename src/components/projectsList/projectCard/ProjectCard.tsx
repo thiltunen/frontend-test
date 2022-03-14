@@ -1,7 +1,11 @@
 import { useContext, CSSProperties, FC, SyntheticEvent, useMemo } from 'react';
+import Button from '@mui/material/Button';
+import DialogActions from '@mui/material/DialogActions';
 import { getRandomBgColor, getContrastTextColor } from 'utils/colorGenerator';
 import { ProjectsContext } from 'contexts/ProjectsContext';
 import { Project } from 'mockData/projects';
+import { ModalContext } from 'contexts/ModalContext';
+import Modal from 'components/modal/Modal';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -11,6 +15,7 @@ interface Props {
 const ProjectCard: FC<Props> = ({ project }) => {
   const { id, name, url, rating, created_at } = project;
   const { deleteProject, updateColors } = useContext(ProjectsContext);
+  const { handleOpenModal, handleCloseModal } = useContext(ModalContext);
 
   // New colors are generated on each rerender / page update based on switcher
   const bgColor = useMemo(() => getRandomBgColor(), []);
@@ -20,16 +25,19 @@ const ProjectCard: FC<Props> = ({ project }) => {
   const randomTextColor = getContrastTextColor(randomBgColor);
 
   const handleDelete = (event: SyntheticEvent, id: string) => {
-    event.preventDefault();
     deleteProject(id);
   };
 
+  const handleClick = (event: SyntheticEvent, openIn: string) => {
+    event.stopPropagation();
+    openIn === 'tab' ? window.open(url) : window.open(url, '_blank', 'popup');
+    handleCloseModal();
+  };
+
   return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noreferrer"
-      className={styles.cardLinkWr}
+    <div
+      onClick={() => handleOpenModal(`${id}Modal`)}
+      className={styles.cardWr}
     >
       <div
         className={styles.card}
@@ -50,7 +58,18 @@ const ProjectCard: FC<Props> = ({ project }) => {
           <span>Date: {created_at.substring(0, 10)}</span>
         </div>
       </div>
-    </a>
+
+      <Modal id={`${id}Modal`} title="Open link with">
+        <DialogActions>
+          <Button onClick={(event) => handleClick(event, 'popup')}>
+            New Window
+          </Button>
+          <Button onClick={(event) => handleClick(event, 'tab')}>
+            New Tab
+          </Button>
+        </DialogActions>
+      </Modal>
+    </div>
   );
 };
 
