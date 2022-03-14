@@ -38,6 +38,7 @@ const ProjectCard: FC<Props> = ({ project }) => {
   return (
     <motion.div
       layout
+      transition={{ ease: 'easeOut', duration: 0.5 }}
       onClick={() => handleOpenModal(`${id}Modal`)}
       className={styles.cardWr}
     >
