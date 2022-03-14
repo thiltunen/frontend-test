@@ -105,7 +105,12 @@ const NewProjectModal: FC = () => {
           name="rating"
           control={control}
           render={({ field }) => (
-            <Rating name={field.name} onChange={field.onChange} size="large" />
+            <Rating
+              name={field.name}
+              onChange={field.onChange}
+              size="large"
+              value={Number(field.value)}
+            />
           )}
         />
 
