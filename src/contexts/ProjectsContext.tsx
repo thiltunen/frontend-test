@@ -1,4 +1,11 @@
-import { useState, createContext, useEffect, ReactNode, FC } from 'react';
+import {
+  useState,
+  createContext,
+  useEffect,
+  ReactNode,
+  FC,
+  useCallback,
+} from 'react';
 import { projectsMock, Project } from 'mockData/projects';
 
 interface IProjectsContext {
@@ -48,23 +55,23 @@ export const ProjectsProvider: FC<ReactNode> = ({ children }) => {
     localStorage.setItem('projects', JSON.stringify(projectsList));
   };
 
-  const sortByRating = (sortAscending: boolean) => {
-    setProjects([
-      ...projects.sort((a, b) =>
+  const sortByRating = useCallback((sortAscending: boolean) => {
+    setProjects((prevState) => [
+      ...prevState.sort((a, b) =>
         sortAscending ? a.rating - b.rating : b.rating - a.rating
       ),
     ]);
-  };
+  }, []);
 
-  const sortByDate = (sortAscending: boolean) => {
-    setProjects([
-      ...projects.sort((a, b) =>
+  const sortByDate = useCallback((sortAscending: boolean) => {
+    setProjects((prevState) => [
+      ...prevState.sort((a, b) =>
         sortAscending
           ? new Date(a.created_at).valueOf() - new Date(b.created_at).valueOf()
           : new Date(b.created_at).valueOf() - new Date(a.created_at).valueOf()
       ),
     ]);
-  };
+  }, []);
 
   return (
     <ProjectsContext.Provider

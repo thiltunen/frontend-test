@@ -104,7 +104,9 @@ const NewProjectModal: FC = () => {
         <Controller
           name="rating"
           control={control}
-          render={({ field }) => <Rating {...field} size="large" />}
+          render={({ field }) => (
+            <Rating name={field.name} onChange={field.onChange} size="large" />
+          )}
         />
 
         <DialogActions>

@@ -17,7 +17,7 @@ import NewProjectModal from './newProjectModal/NewProjectModal';
 import styles from './styles.module.scss';
 
 const ControlPanel: FC = () => {
-  const { sortByRating, sortByDate, updateColorsOnRender } =
+  const { sortByRating, sortByDate, updateColorsOnRender, projects } =
     useContext(ProjectsContext);
   const { handleOpenModal } = useContext(ModalContext);
   const [sortBy, setSortBy] = useState('');
@@ -26,7 +26,7 @@ const ControlPanel: FC = () => {
   useEffect(() => {
     if (sortBy === 'rating') sortByRating(sortAscending);
     if (sortBy === 'date') sortByDate(sortAscending);
-  }, [sortBy, sortAscending]);
+  }, [sortBy, sortAscending, sortByRating, sortByDate, projects.length]);
 
   return (
     <div className={styles.controlPanel}>
@@ -112,7 +112,7 @@ const ControlPanel: FC = () => {
         sx={{ color: '#1976d2', textTransform: 'upperCase' }}
         control={<Switch onChange={updateColorsOnRender} />}
         label="Update colors on&nbsp;each&nbsp;rerender"
-        className={styles.colorsSwithc}
+        className={styles.colorsSwitcher}
       />
 
       <NewProjectModal />
